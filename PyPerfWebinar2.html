@@ -13186,9 +13186,9 @@ Cornell University<br />
 <h1 id="Python/C-API-and-extension-modules">Python/C API and extension modules<a class="anchor-link" href="#Python/C-API-and-extension-modules">&#182;</a></h1><ul>
 <li>CPython, written in C, is accompanied by an Application Programming Interface (API) that enables communication between Python and C (and thus to basically any other language)</li>
 <li>Python/C API allows for compiled chunks of code to be called from Python or executed within the CPython interpreter &rarr; <b>extension modules</b></li>
-<li>a compiled shared object library (.so, .dll, etc.) making use of Python/C API<ul>
-<li>compiled code executing operations of interest</li>
-<li>wrapper/interface code consisting of calls to Python/C API and underlying compiled code</li>
+<li>Compiled shared object library (.so, .dll, etc.) is accessed through Python/C API<ul>
+<li>compiled code executes operations of interest</li>
+<li>wrapper/interface code consists of calls to Python/C API and underlying compiled code</li>
 </ul>
 </li>
 <li>Can be imported into python interpreter just as pure Python source code can</li>
@@ -13244,7 +13244,7 @@ Cornell University<br />
 <li>Most specific functionality for scientific computing is provided by third-party libraries, which are typically a mix of Python code and compiled extension modules<ul>
 <li><b>NumPy</b>: multi-dimensional arrays, linear algebra, random numbers</li>
 <li><b>SciPy</b>: routines for integration, optimization, root-finding, interpolation, etc.</li>
-<li><b>Pandas</b>: Series and Dataframes to handle tabular data (e.g., from spreadsheets)</li>
+<li><b>Pandas</b>: Series and Dataframes for tabular data and statistics (e.g., from spreadsheets)</li>
 <li><b>Scikit-learn, TensorFlow, Caffe, PyTorch, Keras</b>: machine learning</li>
 <li><b>Matplotlib, Seaborn, Bokeh</b>: plotting</li>
 <li><b>NetworkX</b>: networks</li>
@@ -13293,7 +13293,7 @@ Cornell University<br />
 <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
 
-<span class="n">log_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># an example of a ufunc</span>
+<span class="n">log_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># an example of a &quot;universal function&quot; (ufunc) -- operates on scalars and arrays</span>
 
 <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>    <span class="c1"># throws ValueError if a and b not the same shape</span>
 </pre></div>
@@ -13491,10 +13491,10 @@ Cornell University<br />
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2.98 ms ± 32.6 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
-1.07 s ± 13.1 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
-1.62 ms ± 10.2 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
-2.5 ms ± 37.2 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<pre>3.68 ms ± 335 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+1.19 s ± 21.7 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+1.92 ms ± 70.7 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+2.74 ms ± 21.7 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre>
 </div>
 </div>
@@ -13763,8 +13763,8 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>38.5 ns ± 0.431 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
-96.2 µs ± 454 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+<pre>42.1 ns ± 0.912 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+104 µs ± 1.56 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
 </pre>
 </div>
 </div>
@@ -13855,7 +13855,9 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> line_profiler
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># first need to install line_profiler package; typically not installed by default</span>
+
+<span class="o">%</span><span class="k">load_ext</span> line_profiler
 
 <span class="o">%</span><span class="k">lprun</span> -f lorenz -f integrate_lorenz integrate_lorenz()
 </pre></div>
@@ -13868,7 +13870,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Optimizing-&quot;Time-to-Science&quot;">Optimizing "Time to Science"<a class="anchor-link" href="#Optimizing-&quot;Time-to-Science&quot;">&#182;</a></h1>
+<h1 id="Optimizing-Time-to-Science">Optimizing Time to Science<a class="anchor-link" href="#Optimizing-Time-to-Science">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -14177,7 +14179,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 0000000000007340 t _m_log
 00000000000073d0 t _m_log10
 0000000000007060 t _m_log2
-
+0000000000006ca0 t _m_remainder
 0000000000006dd0 t _math_2
 0000000000001110 t _math_acos
 0000000000007ea0 s _math_acos_doc
@@ -14347,7 +14349,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="images/PyCallable.png" alt="Python callbacks"></p>
 <ul>
-<li>can hack things with the help of wrapper generation tools to get compiled routines to accept a pointer to a compiled callback function</li>
+<li>can hack things with the help of wrapper generation tools to get compiled routines to accept a pointer to a compiled callback function (func in this example)</li>
 <li>scipy.LowLevelCallable recently introduced to work with some functions (not solve_ivp)</li>
 </ul>
 
@@ -14412,8 +14414,8 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>856 µs ± 10.4 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
-1.05 ms ± 7.11 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<pre>983 µs ± 69.4 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+1.27 ms ± 127 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre>
 </div>
 </div>
@@ -15120,8 +15122,8 @@ static PyObject *__pyx_pf_46_cython_magic_4aa45f6e93daece179769894cf9d3505_prime
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>358 µs ± 1.9 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
-16.6 µs ± 37 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+<pre>392 µs ± 11 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+18 µs ± 213 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 </pre>
 </div>
 </div>
@@ -15244,8 +15246,8 @@ def betweenness_centrality_parallel(G, processes=None):
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>13.3 µs ± 52.1 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
-34.4 ms ± 153 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<pre>14.5 µs ± 129 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+38.3 ms ± 1.16 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre>
 </div>
 </div>
