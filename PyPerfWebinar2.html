@@ -13386,19 +13386,7 @@ Cornell University<br />
 <li>routines for integration, optimization, root-finding, interpolation, fitting, etc.</li>
 <li>Python callbacks enable ease-of-use, but with some performance penalty</li>
 </ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="images/PyCallable.png" alt="Python callbacks"></p>
-<ul>
-<li>can hack things with the help of wrapper generation tools to get compiled routines to accept a pointer to a compiled callback function</li>
-<li>scipy.LowLevelCallable recently introduced to work with some functions (not solve_ivp)</li>
-</ul>
-
+<center><img src="images/PyCallable2b.png" /></center>
 </div>
 </div>
 </div>
@@ -13503,10 +13491,10 @@ Cornell University<br />
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2.99 ms ± 11 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
-1.07 s ± 6.8 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
-1.69 ms ± 41.6 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
-2.5 ms ± 8.6 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<pre>2.98 ms ± 32.6 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+1.07 s ± 13.1 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+1.62 ms ± 10.2 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+2.5 ms ± 37.2 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre>
 </div>
 </div>
@@ -13775,8 +13763,8 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>40 ns ± 0.129 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
-97.5 µs ± 1.01 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+<pre>38.5 ns ± 0.431 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+96.2 µs ± 454 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
 </pre>
 </div>
 </div>
@@ -13965,6 +13953,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 <li>Jupyter and RISE</li>
 <li>Extension modules in more detail</li>
 <li>NumPy: outer products and broadcasting</li>
+<li>Python callbacks in SciPy</li>
 <li>Parallel execution with numba</li>
 <li>Cython<ul>
 <li>Pure Python vs. Cython</li>
@@ -14188,7 +14177,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 0000000000007340 t _m_log
 00000000000073d0 t _m_log10
 0000000000007060 t _m_log2
-0000000000006ca0 t _m_remainder
+
 0000000000006dd0 t _math_2
 0000000000001110 t _math_acos
 0000000000007ea0 s _math_acos_doc
@@ -14349,6 +14338,25 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Python-callbacks-in-SciPy">Python callbacks in SciPy<a class="anchor-link" href="#Python-callbacks-in-SciPy">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="images/PyCallable.png" alt="Python callbacks"></p>
+<ul>
+<li>can hack things with the help of wrapper generation tools to get compiled routines to accept a pointer to a compiled callback function</li>
+<li>scipy.LowLevelCallable recently introduced to work with some functions (not solve_ivp)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Parallel-execution-with-Numba">Parallel execution with Numba<a class="anchor-link" href="#Parallel-execution-with-Numba">&#182;</a></h1>
 </div>
 </div>
@@ -14404,8 +14412,8 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>861 µs ± 6.03 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
-1.06 ms ± 21 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<pre>856 µs ± 10.4 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+1.05 ms ± 7.11 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre>
 </div>
 </div>
@@ -15112,8 +15120,8 @@ static PyObject *__pyx_pf_46_cython_magic_4aa45f6e93daece179769894cf9d3505_prime
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>366 µs ± 6.69 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
-17.6 µs ± 916 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+<pre>358 µs ± 1.9 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+16.6 µs ± 37 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 </pre>
 </div>
 </div>
@@ -15236,8 +15244,8 @@ def betweenness_centrality_parallel(G, processes=None):
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>13.7 µs ± 750 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
-35 ms ± 379 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<pre>13.3 µs ± 52.1 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+34.4 ms ± 153 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre>
 </div>
 </div>
