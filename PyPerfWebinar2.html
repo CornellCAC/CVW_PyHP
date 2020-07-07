@@ -13213,7 +13213,7 @@ Cornell University<br />
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Outline">Outline<a class="anchor-link" href="#Outline">&#182;</a></h1><ul>
 <li>Introduction</li>
-<li>Three main strategies<ul>
+<li>Three main strategies for improved performance<ul>
 <li>More compiled code</li>
 <li>Parallel processing</li>
 <li>Faster native Python</li>
@@ -13424,7 +13424,7 @@ Cornell University<br />
 <li>a just-in-time (JIT) compiler that compiles a subset of Python and NumPy source to machine code for execution in CPython</li>
 <li>uses LLVM to convert Python bytecodes to intermediate representation (IR), and generates optimized C code from that</li>
 <li>can be configured in more detail, but some performance improvements simply via addition of @jit decorator</li>
-<li>multicore parallelism easily enabled without additional programming</li>
+<li>multicore parallelism easily supported through options to decorators</li>
 <li>Nice tutorial at SciPy 2017 by Gil Forsyth &amp; Lorena Barba ( <a href="https://www.youtube.com/watch?v=1AwG0T4gaO0">https://www.youtube.com/watch?v=1AwG0T4gaO0</a> )</li>
 </ul>
 
@@ -13503,10 +13503,10 @@ Cornell University<br />
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>3.19 ms ± 51.2 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
-1.1 s ± 38.5 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
-2.3 ms ± 346 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
-3.23 ms ± 700 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<pre>2.99 ms ± 11 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+1.07 s ± 6.8 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+1.69 ms ± 41.6 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+2.5 ms ± 8.6 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre>
 </div>
 </div>
@@ -13611,26 +13611,6 @@ with Pool(4) as p:
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">do_not_run_in_jupyter</span>
-
-# or, equivalently
-
-import concurrent.futures
-
-executor = concurrent.futures.ProcessPoolExecutor(max_workers=4)
-print(list(executor.map(f, range(100))))
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13655,7 +13635,7 @@ print(list(executor.map(f, range(100))))
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Typical MPI fare: communicators, ranks, sends, receives, etc.</span>
@@ -13770,7 +13750,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">set1</span>  <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10000</span><span class="p">))</span>
@@ -13795,8 +13775,8 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>51.2 ns ± 7.28 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
-120 µs ± 3.94 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+<pre>40 ns ± 0.129 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+97.5 µs ± 1.01 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
 </pre>
 </div>
 </div>
@@ -13825,7 +13805,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
@@ -13854,7 +13834,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">prun</span> integrate_lorenz()
@@ -13884,7 +13864,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> line_profiler
@@ -13906,7 +13886,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">integrate_lorenz</span><span class="p">()</span>
@@ -13920,7 +13900,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -13981,6 +13961,34 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Supplementary-material">Supplementary material<a class="anchor-link" href="#Supplementary-material">&#182;</a></h1><ul>
+<li>Jupyter and RISE</li>
+<li>Extension modules in more detail</li>
+<li>NumPy: outer products and broadcasting</li>
+<li>Parallel execution with numba</li>
+<li>Cython<ul>
+<li>Pure Python vs. Cython</li>
+<li>Cython timing comparison</li>
+</ul>
+</li>
+<li>Multiprocessing<ul>
+<li>concurrent.futures</li>
+<li>example from networkx</li>
+</ul>
+</li>
+<li>Writing faster Python<ul>
+<li>Collections and containers</li>
+<li>Lazy evaluation</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Questions?">Questions?<a class="anchor-link" href="#Questions?">&#182;</a></h1><ul>
 <li>Extension modules and hybrid codes</li>
 <li>Three main strategies<ul>
@@ -13999,31 +14007,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 </ul>
 </li>
 <li>Performance assessment</li>
-<li>Anything else?</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Supplementary-material">Supplementary material<a class="anchor-link" href="#Supplementary-material">&#182;</a></h1><ul>
-<li>Jupyter and RISE</li>
-<li>Extension modules in more detail</li>
-<li>NumPy: outer products and broadcasting</li>
-<li>Parallel execution with numba</li>
-<li>Cython<ul>
-<li>Pure Python vs. Cython</li>
-<li>Cython timing comparison</li>
-</ul>
-</li>
-<li>More multiprocessing (from networkx documentation)</li>
-<li>Writing faster Python<ul>
-<li>Collections and containers</li>
-<li>Lazy evaluation</li>
-</ul>
-</li>
+<li>Anything else regarding Python and Performance?</li>
 </ul>
 
 </div>
@@ -14043,7 +14027,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Just a little Jupyter hacking to allow code snippets to proceed without exceptions</span>
@@ -14070,13 +14054,13 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Extension-module-example:-the-math-library">Extension module example: the math library<a class="anchor-link" href="#Extension-module-example:-the-math-library">&#182;</a></h2>
+<h1 id="Extension-module-example:-the-math-library">Extension module example: the math library<a class="anchor-link" href="#Extension-module-example:-the-math-library">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Linux &amp; MacOS only -- examine the mix of API and math functions in the math .so shared library</span>
@@ -14343,7 +14327,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># numpy multiplicative outer product</span>
@@ -14371,7 +14355,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">prange</span>
@@ -14399,7 +14383,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">timeit</span> f5(X,Y,Z)
@@ -14420,8 +14404,8 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>1.19 ms ± 300 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
-1.21 ms ± 269 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<pre>861 µs ± 6.03 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+1.06 ms ± 21 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre>
 </div>
 </div>
@@ -14433,13 +14417,13 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Cython:-comparing-pure-Python-vs.-Cython">Cython: comparing pure Python vs. Cython<a class="anchor-link" href="#Cython:-comparing-pure-Python-vs.-Cython">&#182;</a></h1>
+<h1 id="Comparing-pure-Python-vs.-Cython">Comparing pure Python vs. Cython<a class="anchor-link" href="#Comparing-pure-Python-vs.-Cython">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Example: adapted from Cython tutorial at https://cython.readthedocs.io/en/latest/src/tutorial/cython_tutorial.html#primes</span>
@@ -14498,7 +14482,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> Cython
@@ -14511,7 +14495,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">cython</span> <span class="o">-</span><span class="n">a</span>
@@ -14568,7 +14552,7 @@ data2 = [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[23]:</div>
+    <div class="prompt output_prompt">Out[22]:</div>
 
 
 
@@ -15106,7 +15090,7 @@ static PyObject *__pyx_pf_46_cython_magic_4aa45f6e93daece179769894cf9d3505_prime
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">timeit</span> primes(100)
@@ -15128,12 +15112,39 @@ static PyObject *__pyx_pf_46_cython_magic_4aa45f6e93daece179769894cf9d3505_prime
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>371 µs ± 2.94 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
-16.9 µs ± 127 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+<pre>366 µs ± 6.69 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+17.6 µs ± 916 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 </pre>
 </div>
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Multiprocessing-with-concurrent.futures">Multiprocessing with concurrent.futures<a class="anchor-link" href="#Multiprocessing-with-concurrent.futures">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">do_not_run_in_jupyter</span>
+
+# or, equivalently
+
+import concurrent.futures
+
+executor = concurrent.futures.ProcessPoolExecutor(max_workers=4)
+print(list(executor.map(f, range(100))))
+</pre></div>
+
+    </div>
 </div>
 </div>
 
@@ -15186,7 +15197,7 @@ def betweenness_centrality_parallel(G, processes=None):
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Collections-and-containers">Collections and containers<a class="anchor-link" href="#Collections-and-containers">&#182;</a></h2><p>Use the right data structure for the job</p>
+<h1 id="Collections-and-containers">Collections and containers<a class="anchor-link" href="#Collections-and-containers">&#182;</a></h1><p>Use the right data structure for the job</p>
 <p>As with membership testing, computing set intersections is much faster using sets than lists</p>
 
 </div>
@@ -15225,8 +15236,8 @@ def betweenness_centrality_parallel(G, processes=None):
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>13.5 µs ± 150 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
-35.2 ms ± 345 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<pre>13.7 µs ± 750 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+35 ms ± 379 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre>
 </div>
 </div>
@@ -15238,7 +15249,7 @@ def betweenness_centrality_parallel(G, processes=None):
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Lazy-evaluation">Lazy evaluation<a class="anchor-link" href="#Lazy-evaluation">&#182;</a></h2><ul>
+<h1 id="Lazy-evaluation">Lazy evaluation<a class="anchor-link" href="#Lazy-evaluation">&#182;</a></h1><ul>
 <li>a strategy implemented in some programming languages whereby certain objects are not produced until they are needed</li>
 <li>often used in conjunction with functions that produce collections of objects</li>
 <li>if you only need to iterate over the items in a collection, you don't need to produce that entire collection</li>
